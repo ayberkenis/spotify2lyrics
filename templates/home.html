@@ -1,0 +1,73 @@
+{% extends 'layout-in.html' %}
+{% block content %}
+<div class="row row-cols-3">
+    {% if player.track %}
+
+    {# Playing card section, displays song details as a card #}
+    <div class="col">
+        <div class="card bg-light text-dark text-center sticky-top" style="max-width: 36rem;" id="playing-card">
+            <img src="{% if player.track %} {{ player.track.album.image }} {% endif %}" class="card-img" alt="Album Image">
+            <div class="card-body">
+              <h5 class="card-title text-center">{% if player.track %} {{ player.track.artist.name }} - {{ player.track.name }}{% endif %}</h5>
+              <a href="#" class="btn btn-primary mt-2">Album</a> <a href="#" class="btn btn-primary ml-2 mt-2">Artists</a> <a href="#" class="btn btn-danger ml-2 mt-2"><i class="fas fa-stop"></i> Stop Playing</a>
+            </div>
+          </div>
+    </div>
+
+    {# Displays Lyrics #}
+    <div class="col">
+        <div class="card bg-light text-dark" id="lyrics-div">
+            <div class="card-body">
+                  <h5 class="card-title" id="song-name">{% if player.track %} {{ player.track.name }} Lyrics {% else %} You're not listening. {% endif %} </h5>
+                        <p id="lyrics">
+                            {% for lyric in lyrics %}
+                        {{ lyric }} </p>
+                    {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+    {# Lyrics rating system #}
+    <div class="col">
+        <div class="card d-flex bg-light text-dark justify-content-center sticky-top" id="rep-card">
+          <div class="card-body text-center" style="color: black;">
+              <h3>How would you rate this lyrics?</h3>
+              <div class="rate">
+                <input type="radio" id="star5" name="rate" value="5" />
+                <label for="star5" title="text">5 stars</label>
+                <input type="radio" id="star4" name="rate" value="4" />
+                <label for="star4" title="text">4 stars</label>
+                <input type="radio" id="star3" name="rate" value="3" />
+                <label for="star3" title="text">3 stars</label>
+                <input type="radio" id="star2" name="rate" value="2" />
+                <label for="star2" title="text">2 stars</label>
+                <input type="radio" id="star1" name="rate" value="1" />
+                <label for="star1" title="text">1 star</label>
+              </div>
+            <a href="#" class="btn btn-danger ml-2 mt-2"><i class="fas fa-stop"></i> Report Erroneous Lyrics</a>
+          </div>
+        </div>
+    </div>
+    {% endif %}
+
+
+    {% if not player.track %}
+        <div class="card bg-light text-dark w-100" id="lyrics-div">
+            <div class="card-body" id="lyrics-div-parent">
+                  <h5 class="card-title" id="song-name">{% if player.track %} {{ player.track.name }} Lyrics {% else %} You're not listening. {% endif %} </h5>
+                    <p id="lyrics">{% for lyric in lyrics %}{{ lyric }}{% endfor %}</p>
+            </div>
+        </div>
+    {% endif %}
+
+</div>
+
+
+{% endblock %}
+
+
+{% block js_import %}
+
+<script src="{{ url_for('static', filename='lyrics.js') }}"></script>
+{% endblock %}

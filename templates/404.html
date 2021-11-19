@@ -1,0 +1,12 @@
+{% extends 'layout-in.html' %}
+{% block content %}
+    <h1>We couldn't find the page you're looking for.</h1>
+    <a href="/"><small>You will be redirected to homepage automatically, thus you can click here to redirect manually.</small></a>
+    <p>{{ e }}</p>
+
+      <script>
+         setTimeout(function(){
+            window.location.href = '/';
+         }, 5000);
+      </script>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'layout-in.html' %}
+    {% block content %}
+
+    <div class="row row-cols-3 row-cols-md-3">
+          <div class="col-sm-3">
+            <h3 class="mb-4">Top Songs</h3>
+            {% for track in tracks %}
+                 <div class="card">
+                  <div class="row g-0">
+                    <div class="col-sm-2">
+                      <img src="{{ track.album.image }}" class="card-img-top" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title text-dark">{{ loop.index }} - {{ track.artist.name  }} - {{ track.name  }}</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            {% endfor %}
+
+        </div>
+
+        <div class="col-sm-2">
+            <h3 class="mb-4">Top Artists</h3>
+            {% for artist in artists %}
+                 <div class="card">
+                  <div class="row g-0">
+                    <div class="col-sm-2">
+                      <img src="{{ artist.avatar }}" class="card-img-top rounded-start w-100" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title text-dark">{{ loop.index }} - {{ artist.name }}</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            {% endfor %}
+
+        </div>
+
+        <div class="col-sm-2">
+            <h3 class="mb-4">Recently Played</h3>
+            {% for track in recently_played %}
+                 <div class="card">
+                  <div class="row g-0">
+                    <div class="col-sm-2">
+                      <img src="{{ track.album.image }}" class="card-img-top rounded-start w-100" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title text-dark">{{ loop.index }} - {{ track.artist.name }} - {{ track.name }}</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            {% endfor %}
+
+        </div>
+
+
+    </div>
+
+
+    {% endblock %}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Externals -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/1a489907ee.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.socket.io/4.3.2/socket.io.js" crossorigin="anonymous"></script>
+    <link href="{{ url_for('static', filename='layout.css') }}" rel="stylesheet">
+
+    <title>Spotify2Lyrics</title>
+</head>
+<body>
+
+    <div class="container-fluid d-flex justify-content-center mb-4" id="menu">
+        <ul class="side-menu">
+            <li><a href="{{ url_for('homepage') }}"><span class="fa fa-home"></span>Home</a></li>
+            <li><a href="#"><span class="fab fa-readme"></span>Lyrics</a></li>
+            <li><a href="#"><span class="fas fa-globe"></span>Explore</a></li>
+            <li><a href="#"><span class="fas fa-sort-amount-up"></span>Statistics</a></li>
+
+            <li class="social"><a href="#"><span class="fab fa-github"></span>GitHub <i class="fas fa-external-link-alt"></i></a></li>
+            <li class="footer"><a href="{{ url_for('logout') }}"><span class="fas fa-sign-out-alt"></span>Logout</a></li>
+            <li class="footer-user"><a href="{{ url_for('user_profile') }}"><span class="fa fa-user"></span>{{ user.display_name }}</a></li>
+
+        </ul>
+    </div>
+
+
+    <div class="container d-flex justify-content-center" id="body">
+            <div class="col-lg-6">
+                <div class="card text-dark bg-light mb-3 text-center" style="max-width: 18rem;" id="playing-card">
+                    <img src="{{ playlist['images'][0]['url'] }}" class="card-img-top h-25" alt="Album Image">
+                    <div class="card-body">
+                      <h5 class="card-title text-center">{{ playlist['name'] }}</h5>
+                      <a href="#" class="btn btn-primary mt-2">Album</a> <a href="#" class="btn btn-primary ml-2 mt-2">Artists</a> <a href="#" class="btn btn-danger ml-2 mt-2"><i class="fas fa-stop"></i> Remove Playlist</a>
+                    </div>
+                  </div>
+
+        <div class="row">
+            <div class="col-xxl-6 w-100" id="lyrics-div">
+                <div class="card text-dark bg-light mb-3">
+                    <div class="card-body">
+                          <h5 class="card-title" id="song-name"> Songs </h5>
+                            {% for data in playlist['tracks']['items'] %}
+                              <a href="#"><li class="list-group-item">{{ data['track']['name'] }}</li></a>
+                           {% endfor %}
+
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- JavaScript Imports -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</body>
+</html>

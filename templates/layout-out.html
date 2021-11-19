@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Externals -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/1a489907ee.js" crossorigin="anonymous"></script>
+    <link href="{{ url_for('static', filename='layout.css') }}" rel="stylesheet">
+
+    <title>Spotify2Lyrics</title>
+</head>
+<body>
+    <div class="container-fluid d-flex justify-content-center mb-4" id="menu">
+        <ul class="side-menu">
+            <li><a href="#"><span class="fa fa-home"></span>Home</a></li>
+
+
+            <li class="social"><a href="#"><span class="fab fa-github"></span>GitHub <i class="fas fa-external-link-alt"></i></a></li>
+            <li class="footer"><a href="{{ url_for('login') }}"><span class="fas fa-sign-in-alt"></span>Login</a></li>
+
+        </ul>
+    </div>
+    <div class="container d-flex justify-content-center" id="body">
+
+        <div class="row">
+            <div class="col">
+                <div class="card text-dark bg-light mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title">Welcome to Spotify2Lyrics</h5>
+                      <p class="card-text">Spotify2Lyrics is an open-source project that serves lyrics data automatically by connecting to your Spotify account.
+                          We don't ask for your password or any other credentials. We ask you to proceed with the Spotify Login </p>
+                        <a class="btn btn-primary spotify-color text-center" href="{{ url_for('login') }}"><i class="fab fa-spotify"></i> Login with Spotify</a>
+                    </div>
+                  </div>
+          </div>
+            <div class="col">
+                <div class="card text-dark bg-light mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title">Changelog <span class="badge bg-secondary">{{ app_.version }}</span></h5>
+                        <ul>
+                            <li><code>build_url</code> function has been updated.</li>
+                            <li><a href="{{ url_for('statistics') }}">Statistics</a> has been added.</li>
+                            <li><a href="{{ url_for('user_profile') }}">Profile</a> has been added.</li>
+                            <li>OVH API has been added, now it checks cache before sending any request to lyrics apis.</li>
+                            <li>Now we almost cover 50% of the Spotify API with our wrapper.</li>
+                            <li>Dark mode has been added.</li>
+                            <li><code>get_top_tracks, get_recently_played, get_top_artists</code> functions now returns Track object instead of JSON data.</li>
+                        </ul>
+                      <h5 class="card-title">Newcoming</h5>
+                        <ul>
+                            <li>Explore will be added.</li>
+                            <li>Webhooks will be added for the API.</li>
+                            <li>Discord and Youtube integration is on the way.</li>
+                            <li>There may be a chrome extension in the future. But not in the near future.</li>
+                            <li>We need to cover 100% of the Spotify API.</li>
+                            <li>We'll add more lyrics apis to cover all the available songs in the Spotify.</li>
+                        </ul>
+                    </div>
+                  </div>
+          </div>
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript Imports -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</body>
+</html>
